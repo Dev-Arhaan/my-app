@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
 
 export async function GET(request: any){
@@ -9,13 +9,11 @@ export async function GET(request: any){
     if (address) {
         url = `https://api.github.com/users/${address}`;
     } else {
-        url = "https://api.github.com/users/mojombo"
+        url = "https://api.github.com/users"
     }
 
     const res = await fetch(url)
     const data = await res.json()
     return NextResponse.json({data})
-
-
 
 }

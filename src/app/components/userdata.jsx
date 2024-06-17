@@ -20,8 +20,10 @@ export default function UserData() {
     }
 
     useEffect(() => {
-        fetchData("mojombo")
+        fetchData("defunkt")
     }, [])
+
+    // const dateString = userData.created_at.slice(0,10)
   
     return (
         
@@ -36,8 +38,8 @@ export default function UserData() {
             width={500}
             height={500}
             alt="user Avatar"/>
-            <h1 >{userData.id}, {userData.login}</h1>
-            <h1 >{userData.name}</h1>
+            <h1 className='text-4xl font-bold'>{userData.id}, {userData.login}</h1>
+            <h1 className='text-yellow-300 text-3xl font-bold mb-4'>{userData.name}</h1>
             <h1 ></h1>
             <div>
                 <h1 >Followers : {userData.followers}</h1>
