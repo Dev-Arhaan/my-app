@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useRef, useState } from "react";
+
+
 const Autocomplete = (props: any) => {
   const [active, setActive] = useState(0);
   const [filtered, setFiltered] = useState([]);
@@ -54,20 +56,23 @@ const Autocomplete = (props: any) => {
       if (filtered.length) {
         return (
           <div className="flex justify-center">
-          <ul className="border border-[#999] border-t-0 mt-0 max-h-[143px] overflow-y-auto pl-0 w-[320px]" ref={selectRef}>
+          <ul className="*:border *:border-[#999] *:border-t-0 mt-0 max-h-[143px] overflow-y-auto pl-0 w-[320px] " ref={selectRef}>
             {filtered.map((suggestion, index) => {
-              let className;
+              let classNames;
               if (index === active) {
-                className = "active";
+                classNames = "active";
               }
               setTimeout(() => {
                 setChange();
               }, 100);
               return (
-                <div className="p-2 hover:bg-slate-600 cursor-pointer font-[700]"><li className={className}  key={suggestion} onClick={onClick}>
+                
+                  <li className={` p-2 hover:bg-gray-700 cursor-pointer font-bold ${classNames} ${active ? 'has-[.classNames]:bg-gray-700' : ''}`}  key={suggestion} onClick={onClick}>
+                    
                   {suggestion}
+
                 </li>
-                </div>
+                
               );
             })}
           </ul>

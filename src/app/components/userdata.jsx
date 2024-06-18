@@ -18,12 +18,14 @@ export default function UserData() {
             console.log(error);
         }
     }
-
+    const handleUserName = () =>{
+        setUserName(e.target.value)
+    }
     useEffect(() => {
-        fetchData("defunkt")
+        fetchData(userName)
     }, [])
 
-    // const dateString = userData.created_at.slice(0,10)
+    
   
     return (
         
@@ -41,7 +43,7 @@ export default function UserData() {
             <h1 className='text-4xl font-bold'>{userData.id}, {userData.login}</h1>
             <h1 className='text-yellow-300 text-3xl font-bold mb-4'>{userData.name}</h1>
             <h1 ></h1>
-            <div>
+            <div className='grid align-middle'>
                 <h1 >Followers : {userData.followers}</h1>
                 <h1 >Following : {userData.following}</h1>
             </div>

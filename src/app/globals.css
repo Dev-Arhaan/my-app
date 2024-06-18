@@ -58,12 +58,12 @@ body {
 /* .autocomplete li {
   padding: 8px;
 } */
-.autocomplete > .active,
+/* .autocomplete > .active,
 .autocomplete li:hover {
   background-color: darkgray;
   cursor: pointer;
   font-weight: 700;
-}
+} */
 .autocomplete li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }

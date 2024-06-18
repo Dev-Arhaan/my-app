@@ -1,81 +1,41 @@
+'use client'
+
 import React from 'react'
 import Autocomplete from '../components/search'
 import UserData from '../components/userdata'
+import { useState, useEffect } from 'react';
 
 export default function SearchPage(){
+
+  const [userNames, setUserNames] = useState([]);
+
+  async function getUsers() {
+    const response = await fetch('https://api.github.com/users');
+    const namedata = await response.json();
+    return namedata;
+  }
+  
+  async function getUserNames() {
+    const users = await getUsers();
+    const userNames = users.map((user: any) => user.login);
+    return userNames;
+     
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const names = await getUserNames();
+      setUserNames(names);
+    };
+  
+    fetchData();
+  }, []); // Empty dependency array to run only on mount
+
   return (
     <div>
-    <Autocomplete
-    suggestions={[
-      "Alabama",
-          "Alaska",
-          "American Samoa",
-          "Arizona",
-          "Arkansas",
-          "California",
-          "Colorado",
-          "Connecticut",
-          "Delaware",
-          "District Of Columbia",
-          "Federated States Of Micronesia",
-          "Florida",
-          "Georgia",
-          "Guam",
-          "Hawaii",
-          "Idaho",
-          "Illinois",
-          "Indiana",
-          "Iowa",
-          "Kansas",
-          "Kentucky",
-          "Louisiana",
-          "Maine",
-          "Marshall Islands",
-          "Maryland",
-          "Massachusetts",
-          "Michigan",
-          "Minnesota",
-          "Mississippi",
-          "Missouri",
-          "Montana",
-          "Nebraska",
-          "Nevada",
-          "New Hampshire",
-          "New Jersey",
-          "New Mexico",
-          "New York",
-          "North Carolina",
-          "North Dakota",
-          "Northern Mariana Islands",
-          "Ohio",
-          "Oklahoma",
-          "Oregon",
-          "Palau",
-          "Pennsylvania",
-          "Puerto Rico",
-          "Rhode Island",
-          "South Carolina",
-          "South Dakota",
-          "Tennessee",
-          "Texas",
-          "Utah",
-          "Vermont",
-          "Virgin Islands",
-          "Virginia",
-          "Washington",
-          "West Virginia",
-          "Wisconsin",
-          "Wyoming"
-    ]} 
-    className="mt-10 flex justify-center"
-
-
-    
-    />
-
-        <UserData /> 
-
+      <Autocomplete suggestions={userNames} className="mt-10 flex justify-center" />
+      <UserData />
     </div>
-    
-  )
+  );
+  
 }

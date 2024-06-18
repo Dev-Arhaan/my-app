@@ -5,11 +5,12 @@ export async function GET(request: any){
     const { searchParams } = new URL(request.url)
     const address = searchParams.get('address')
 
+
     let url = ""
-    if (address) {
+    if (address !== '') {
         url = `https://api.github.com/users/${address}`;
     } else {
-        url = "https://api.github.com/users"
+        url = "https://api.github.com/users/mojombo"
     }
 
     const res = await fetch(url)
@@ -17,3 +18,4 @@ export async function GET(request: any){
     return NextResponse.json({data})
 
 }
+
